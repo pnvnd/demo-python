@@ -40,19 +40,19 @@ Jinja2Instrumentor().instrument()
 def hello_world():
     return 'Hello, World!'
 
-@flaskapp.route("/ping", strict_slashes=False)
+@app.route("/ping", strict_slashes=False)
 def ping():
     return jsonify(ping="pong")
 
 # API to convert Fahrenheit to Celcius
-@flaskapp.route("/convertC/<tempF>")
+@app.route("/convertC/<tempF>")
 def convertC(tempF):
     tempC = (5/9*(float(tempF))-32)
     logging.info(f"[INFO] Converted {tempF}°F to {tempC:.2f}°C.")
     return f"{tempF}°F is {tempC:.2f}°C."
 
 # API to convert Celcius to Fahrenheit New Comment
-@flaskapp.route("/convertF/<tempC>")
+@app.route("/convertF/<tempC>")
 def convertF(tempC):
     try:
         tempF = 9/5*(float(tempC))+32
