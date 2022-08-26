@@ -40,9 +40,5 @@ def convertC(tempF):
 # API to convert Celcius to Fahrenheit New Comment
 @flaskapp.route("/convertF/<tempC>")
 def convertF(tempC):
-    try:
-        tempF = 9/5*(float(tempC))+32
-#        logging.info(f"[INFO] Converted {tempC}°F to {tempF:.2f}°C.")
-        return f"{tempC}°C is {tempF:.2f}°F."
-#    except:
-#        logging.warning("[WARN] Invalid temperature!")
+    tempF = 9/5*(float(tempC))+32
+    return f"{tempC}°C is {tempF:.2f}°F."
