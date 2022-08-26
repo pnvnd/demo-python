@@ -6,7 +6,7 @@ from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExport
 from opentelemetry.instrumentation.flask import FlaskInstrumentor
 from opentelemetry.instrumentation.jinja2 import Jinja2Instrumentor
 
-from flask import Flask, render_template
+from flask import Flask, jsonify, render_template
 app = Flask(__name__)
 
 import uuid
@@ -29,3 +29,20 @@ def ping():
 @app.route('/hello')
 def hello():
     return render_template('hello.html')
+
+# API to convert Fahrenheit to Celcius
+@flaskapp.route("/convertC/<tempF>")
+def convertC(tempF):
+    tempC = (5/9*(float(tempF))-32)
+#    logging.info(f"[INFO] Converted {tempF}°F to {tempC:.2f}°C.")
+    return f"{tempF}°F is {tempC:.2f}°C."
+
+# API to convert Celcius to Fahrenheit New Comment
+@flaskapp.route("/convertF/<tempC>")
+def convertF(tempC):
+    try:
+        tempF = 9/5*(float(tempC))+32
+#        logging.info(f"[INFO] Converted {tempC}°F to {tempF:.2f}°C.")
+        return f"{tempC}°C is {tempF:.2f}°F."
+#    except:
+#        logging.warning("[WARN] Invalid temperature!")
