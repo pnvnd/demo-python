@@ -27,5 +27,5 @@ def ping():
     return jsonify(ping='pong')
 
 @app.route('/hello')
-def hello_world():
+def hello():
     return render_template('hello.html')
