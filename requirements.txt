@@ -1,5 +1,6 @@
 newrelic
 Flask
+opentelemetry
 opentelemetry-api
 opentelemetry-distro
 opentelemetry-exporter-otlp-proto-grpc
