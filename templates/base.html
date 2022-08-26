@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <title>{% block title %}Flask Web Application{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" href="https://www.datacrunch.ca/simple-statuspage/fontawesome/css/all.css" />
+    <script src="{{ url_for('static', filename='js/dark-mode.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/clock.js') }}"></script>
+    {% endblock %}
+</head>
+
+<body onload="startTime()">
+
+<header>
+  <ul>
+    <li><a class="active">Datacrunch</a></li>
+    <li><a id="date"></a></li>
+    <li><a id="clock"></a></li>
+    <li style="float:right"><a onclick="dark()"><i class="fas fa-adjust"></i></a></li>
+  </ul>  
+</header>
+
+{% block content %}
+
+{% endblock %}
+
+</body>
+</html>
