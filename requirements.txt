@@ -1,2 +1,12 @@
 newrelic
 Flask
+opentelemetry-api
+opentelemetry-distro
+opentelemetry-exporter-otlp-proto-grpc
+opentelemetry-instrumentation
+opentelemetry-instrumentation-flask
+opentelemetry-proto
+opentelemetry-sdk
+opentelemetry-semantic-conventions
+opentelemetry-util-http
+protobuf==3.20.1
