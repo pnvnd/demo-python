@@ -22,23 +22,22 @@ Jinja2Instrumentor().instrument()
 def hello_world():
     return 'Hello, World!'
 
-@app.route("/ping", strict_slashes=False)
+@app.route('/ping', strict_slashes=False)
 def ping():
-    return jsonify(ping="pong")
+    return jsonify(ping='pong')
+
+@app.route('/hello')
+def hello_world():
+    return render_template('hello.html')
 
 # API to convert Fahrenheit to Celcius
 @app.route("/convertC/<tempF>")
 def convertC(tempF):
     tempC = (5/9*(float(tempF))-32)
-    logging.info(f"[INFO] Converted {tempF}°F to {tempC:.2f}°C.")
     return f"{tempF}°F is {tempC:.2f}°C."
 
 # API to convert Celcius to Fahrenheit New Comment
 @app.route("/convertF/<tempC>")
 def convertF(tempC):
-    try:
-        tempF = 9/5*(float(tempC))+32
-        logging.info(f"[INFO] Converted {tempC}°F to {tempF:.2f}°C.")
-        return f"{tempC}°C is {tempF:.2f}°F."
-    except:
-        logging.warning("[WARN] Invalid temperature!")
+    tempF = 9/5*(float(tempC))+32
+    return f"{tempC}°C is {tempF:.2f}°F."
