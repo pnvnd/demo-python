@@ -18,17 +18,21 @@ trace.get_tracer_provider().add_span_processor(BatchSpanProcessor(OTLPSpanExport
 FlaskInstrumentor().instrument_app(app)
 Jinja2Instrumentor().instrument()
 
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
+@app.route("/")
+def index():
+    return render_template("index.html", title="Flask Web Application")
 
 @app.route('/ping', strict_slashes=False)
 def ping():
     return jsonify(ping='pong')
 
-@app.route('/hello')
-def hello():
-    return render_template('hello.html')
+@app.route("/about")
+def about():
+    return render_template("about.html", title="Datacrunch - About")
+
+@flaskapp.route("/statuspage", strict_slashes=False)
+def statuspage():
+    return render_template("projects/statuspage.html", title="Simple Statuspage")
 
 # API to convert Fahrenheit to Celcius
 @app.route("/convertC/<tempF>")
