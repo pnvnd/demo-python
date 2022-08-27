@@ -30,7 +30,7 @@ def ping():
 def about():
     return render_template("about.html", title="Datacrunch - About")
 
-@flaskapp.route("/statuspage", strict_slashes=False)
+@app.route("/statuspage", strict_slashes=False)
 def statuspage():
     return render_template("projects/statuspage.html", title="Simple Statuspage")
 
