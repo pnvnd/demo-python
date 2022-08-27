@@ -29,7 +29,7 @@ set_log_emitter_provider(log_emitter_provider)
 exporter = OTLPLogExporter(insecure=True)
 log_emitter_provider.add_log_processor(BatchLogProcessor(exporter))
 log_emitter = log_emitter_provider.get_log_emitter(__name__, "0.1")
-handler = LoggingHandler(level=logging.NOTSET, log_emitter=log_emitter)
+handler = LoggingHandler(log_emitter=log_emitter)
 
 logging.getLogger().addHandler(handler)
 
