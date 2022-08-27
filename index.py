@@ -7,7 +7,7 @@ from opentelemetry.instrumentation.flask import FlaskInstrumentor
 from opentelemetry.instrumentation.jinja2 import Jinja2Instrumentor
 
 from flask import Flask, jsonify, render_template
-app = Flask(__name__)
+app = Flask(__name__, static_folder='application/static', template_folder='application/templates')
 
 import uuid
 serviceId = str(uuid.uuid1())
