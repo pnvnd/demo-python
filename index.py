@@ -12,6 +12,7 @@ from opentelemetry.sdk._logs.export import BatchLogProcessor
 
 from opentelemetry.instrumentation.flask import FlaskInstrumentor
 from opentelemetry.instrumentation.jinja2 import Jinja2Instrumentor
+from opentelemetry.instrumentation.logging import LoggingInstrumentor
 
 from flask import Flask, jsonify, render_template
 app = Flask(__name__, static_folder='application/static', template_folder='application/templates')
@@ -35,6 +36,8 @@ logging.getLogger().addHandler(handler)
 
 FlaskInstrumentor().instrument_app(app)
 Jinja2Instrumentor().instrument()
+LoggingInstrumentor().instrument()
+
 
 @app.route("/")
 def index():
