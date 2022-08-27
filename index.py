@@ -4,11 +4,11 @@ from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.sdk.resources import Resource
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
 
-from opentelemetry.exporter.otlp.proto.grpc._log_exporter import OTLPLogExporter
-from opentelemetry.sdk._logs import LogEmitterProvider
-from opentelemetry.sdk._logs import set_log_emitter_provider
-from opentelemetry.sdk._logs import LoggingHandler
-from opentelemetry.sdk._logs.export import BatchLogProcessor
+from opentelemetry.exporter.otlp.proto.grpc.log_exporter import OTLPLogExporter
+from opentelemetry.sdk.logs import LogEmitterProvider
+from opentelemetry.sdk.logs import set_log_emitter_provider
+from opentelemetry.sdk.logs import LoggingHandler
+from opentelemetry.sdk.logs.export import BatchLogProcessor
 
 from opentelemetry.instrumentation.flask import FlaskInstrumentor
 from opentelemetry.instrumentation.jinja2 import Jinja2Instrumentor
