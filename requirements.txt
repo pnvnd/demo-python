@@ -26,6 +26,7 @@ opentelemetry-sdk
 opentelemetry-semantic-conventions
 opentelemetry-util-http
 packaging
+pandas
 protobuf==3.20.1
 pyparsing
 python-dateutil

@@ -60,3 +60,19 @@ def convertF(tempC):
 # API to calculate the nth prime number and how long it takes
 from application.projects.prime import prime
 app.register_blueprint(prime)
+
+# API to calculate the nth fibonacci number
+from application.projects.fibonacci import fibonacci
+app.register_blueprint(fibonacci)
+
+# API to validate credit card numbers
+from application.projects.luhn import luhn
+app.register_blueprint(luhn)
+
+# Get COVID data and plot on chart
+from application.projects.covid import covid
+app.register_blueprint(covid)
+
+# Input number to check divisibility
+from application.projects.divisibility import divisibility
+app.register_blueprint(divisibility)
