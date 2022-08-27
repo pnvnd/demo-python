@@ -4,12 +4,6 @@ from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.sdk.resources import Resource
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
 
-from opentelemetry.exporter.otlp.proto.grpc.log_exporter import OTLPLogExporter
-from opentelemetry.sdk.logs import LogEmitterProvider
-from opentelemetry.sdk.logs import set_log_emitter_provider
-from opentelemetry.sdk.logs import LoggingHandler
-from opentelemetry.sdk.logs.export import BatchLogProcessor
-
 from opentelemetry.instrumentation.flask import FlaskInstrumentor
 from opentelemetry.instrumentation.jinja2 import Jinja2Instrumentor
 from opentelemetry.instrumentation.logging import LoggingInstrumentor
@@ -23,16 +17,6 @@ serviceId = str(uuid.uuid1())
 
 trace.set_tracer_provider(TracerProvider(resource=Resource.create({"service.name": "demo-flask.otel", "service.instance.id": serviceId, "tag.team": "datacrunch-vercel"})))
 trace.get_tracer_provider().add_span_processor(BatchSpanProcessor(OTLPSpanExporter()))
-
-log_emitter_provider = LogEmitterProvider(resource=Resource.create({"service.name": "demo-flask.otel", "service.instance.id": serviceId, "tag.team": "datacrunch-vercel"}))
-set_log_emitter_provider(log_emitter_provider)
-
-exporter = OTLPLogExporter(insecure=True)
-log_emitter_provider.add_log_processor(BatchLogProcessor(exporter))
-log_emitter = log_emitter_provider.get_log_emitter(__name__, "0.1")
-handler = LoggingHandler(log_emitter=log_emitter)
-
-logging.getLogger().addHandler(handler)
 
 FlaskInstrumentor().instrument_app(app)
 Jinja2Instrumentor().instrument()
