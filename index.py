@@ -23,13 +23,14 @@ serviceId = str(uuid.uuid1())
 trace.set_tracer_provider(TracerProvider(resource=Resource.create({"service.name": "demo-flask.otel", "service.instance.id": serviceId, "tag.team": "datacrunch-vercel"})))
 trace.get_tracer_provider().add_span_processor(BatchSpanProcessor(OTLPSpanExporter()))
 
-log_emitter_provider = LogEmitterProvider(resource=Resource.create({"service.name": "python-flask.otel", "service.instance.id": serviceId, "environment": "local"}))
+log_emitter_provider = LogEmitterProvider(resource=Resource.create({"service.name": "demo-flask.otel", "service.instance.id": serviceId, "tag.team": "datacrunch-vercel"}))
 set_log_emitter_provider(log_emitter_provider)
 
 exporter = OTLPLogExporter(insecure=True)
 log_emitter_provider.add_log_processor(BatchLogProcessor(exporter))
 log_emitter = log_emitter_provider.get_log_emitter(__name__, "0.1")
 handler = LoggingHandler(level=logging.NOTSET, log_emitter=log_emitter)
+
 logging.getLogger().addHandler(handler)
 
 FlaskInstrumentor().instrument_app(app)
